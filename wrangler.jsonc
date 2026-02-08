@@ -1,6 +1,7 @@
 {
   "name": "ferran-martinez",
   "compatibility_date": "2024-12-14",
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "./dist",
     "html_handling": "auto-trailing-slash",
