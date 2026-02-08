@@ -1,35 +1,24 @@
-import { EducationItem } from "./components/EducationItem";
-import { ExperienceItem } from "./components/ExperienceItem";
-import { EDUCATION, JOBS } from "./constants";
-import type { Education, Job } from "./types";
+import { Spacer } from "@/components/Spacer";
+import { AboutIntroSection } from "./components/AboutIntroSection";
+import { ExperienceSection } from "./components/ExperienceSection";
+import { EducationSection } from "./components/EducationSection";
 
 export const AboutPage = () => {
   return (
-    <div className="w-max-[1352px]">
-      <div className="mt-12" />
-      <div className="text-4xl text-center font-bold">Experience</div>
-      <div className="mt-12" />
-      <div>
-        {JOBS.map((job: Job) => (
-          <>
-            <ExperienceItem key={job.company} job={job} />
-            <div className="mt-4" />
-          </>
-        ))}
-      </div>
+    <div className="w-screen max-w-[1352px] px-4">
+      <Spacer top={12} bottom={12}>
+        <AboutIntroSection />
+      </Spacer>
 
-      <div className="py-4" />
+      <Spacer top={12} bottom={12}>
+        <ExperienceSection />
+      </Spacer>
 
-      <div className="text-4xl text-center font-bold">Education</div>
-      <div className="mt-12" />
-      <div>
-        {EDUCATION.map((education: Education) => (
-          <>
-            <EducationItem key={education.institution} education={education} />
-            <div className="mt-4" />
-          </>
-        ))}
-      </div>
+      <Spacer top={12} bottom={12}>
+        <EducationSection />
+      </Spacer>
+
+      <Spacer bottom={12} />
     </div>
   );
 };

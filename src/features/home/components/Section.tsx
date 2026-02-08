@@ -1,10 +1,11 @@
-
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-export const Section = ({children}: Props) => {
+export const Section = ({ children }: Props) => {
   return (
-    <div className="pt-32">{children}</div>
-  )
-}
+    <section className="flex justify-center">
+      {children}
+    </section>
+  );
+};

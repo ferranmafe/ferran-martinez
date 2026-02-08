@@ -1,38 +1,42 @@
-import matter from 'gray-matter';
+import matter from "gray-matter";
 
 export type File = {
-  path: string
-  content: string
-}
+  path: string;
+  content: string;
+};
 
 export type Matterfront = {
-  title: string
-  date: string
-  author: string
-  slug: string
-}
+  title: string;
+  date: string;
+  author: string;
+  slug: string;
+  tags: string[];
+  coverImage: string;
+};
 
 export const listFilesInPath = (): File[] => {
-  const filesWithoutFormatting = import.meta.glob('./posts/*.md', {
+  const filesWithoutFormatting = import.meta.glob("../content/posts/*.md", {
     eager: true,
-    as: 'raw',
-  })
+    as: "raw",
+  });
 
-  const blogPosts = []
+  const blogPosts = [];
   for (const [path, content] of Object.entries(filesWithoutFormatting)) {
-    blogPosts.push({path, content});
+    blogPosts.push({ path, content });
   }
-  return blogPosts
-}
+  return blogPosts;
+};
 
 export const getBlogPosts = (): Matterfront[] => {
   return listFilesInPath().map((file: File) => {
     const matterResult = matter(file.content);
     return {
-        title: matterResult.data.title,
-        author: matterResult.data.author,
-        date: matterResult.data.date,
-        slug: file.path.replace('.md', ''),
-    }
-  })
+      title: matterResult.data.title,
+      author: matterResult.data.author,
+      date: matterResult.data.date,
+      slug: file.path.replace(".md", ""),
+      tags: matterResult.data.tags,
+      coverImage: matterResult.data.coverImage,
+    };
+  });
 };
